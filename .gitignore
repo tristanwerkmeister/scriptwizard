@@ -1,0 +1,8 @@
+# Claude Code session files
+.claude/
+
+# Generated preset records (personal, not for sharing)
+presets/
+
+# macOS
+.DS_Store
