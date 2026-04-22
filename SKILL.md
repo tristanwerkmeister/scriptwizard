@@ -17,10 +17,10 @@ A journalist can have as many scripting skills as they need — one per newsroom
 
 ## ROUTING — THE FIRST THING YOU DO
 
-Every incoming request falls into one of three modes:
+Every incoming request falls into one of four modes:
 
 1. **Setup mode** — user wants to create their first preset or add a new one. Triggers: "set up script wizard", "create a preset", "onboard me", "new preset for [X]", or any scripting request if no scripting skill is installed yet. Go to section 1.
-2. **Preset management mode** — user wants to list, rename, delete, duplicate, or update an existing preset. Triggers: "list my presets", "delete the X preset", "rename", "update the voice in Y". Go to section 2.
+2. **Preset management mode** — user wants to list, rename, delete, duplicate, update, or refresh an existing preset. Triggers: "list my presets", "delete the X preset", "rename", "update the voice in Y", "refresh my preset", "annual review". Go to section 2.
 3. **Scripting request** — user wants a script drafted, converted, or reviewed. Redirect:
 
    > This is the **Setup skill** — it handles preset creation and management. To draft scripts, use your **Script Wizard — [preset name]** skill. If you haven't set one up yet, I can walk you through it now.
@@ -44,6 +44,8 @@ Before anything else:
 > **How Script Wizard works:** At the end of setup, I'll generate a personalised scripting skill file — `script-wizard-{your-preset-name}.md` — for you to install in Claude. Once installed, that skill handles all your scripting. This skill (Setup) is just for creating and updating presets.
 >
 > Script Wizard works in **Claude Desktop**, **claude.ai Projects**, and the **Claude Code CLI**. Other AI tools (including ChatGPT) can use these instructions manually, but automatic installation isn't supported — I'll generate the file and tell you exactly what to do with it.
+>
+> **Time:** About 10 minutes if you come with materials ready, or around 30 minutes if we build it from scratch.
 
 If the user hasn't confirmed after two prompts, include the reminder inline at the top of the first output and proceed — don't block the workflow indefinitely.
 
@@ -65,7 +67,7 @@ If the user hasn't confirmed after two prompts, include the reminder inline at t
 >
 > I'll figure out what's covered and only ask about what's missing. Or, if you'd rather be walked through it section by section, just say "walk me through it."
 
-If front-loaded: extract what you can, summarise what you captured per area, then walk through only the missing areas.
+If front-loaded: extract what you can. Before summarising, check for contradictions between the pasted sources — if a voice document says one thing and the sample scripts show another (e.g., "formal register" in the document but casual contractions throughout the scripts; or a standards policy that says "no first person" but scripts that use "I"), surface each conflict directly: "I found a conflict between [X] and [Y] — which reflects your actual practice?" Resolve each before moving on. Then summarise what you captured per area and walk through only the missing areas.
 
 ### 1.3 Walk through five areas
 
@@ -125,7 +127,8 @@ Offer:
 If the user skips, go straight to section 1.7 (generate).
 
 If the user provides an article or asks for a generated script, draft one test script now using the assembled preset:
-- Apply format parameters in auto mode — use ~170 words, Explainer structure, link CTA, no storyboard unless the user specifies otherwise.
+- Apply format parameters in auto mode — infer structure from the story type (News for breaking/incremental news, Explainer for policy or process, Narrative for features and human interest); default to ~170 words, link CTA, no storyboard unless the user specifies otherwise.
+- If the user pastes an article, run the Mode B article-to-script reminder first: ⚠️ **Article-to-script reminder:** Only use facts and quotes from the article — do not infer or add. If third-party, attribute explicitly in the script (e.g., "according to [publication]").
 - Run angle and hook consultation as normal — propose the angle and offer three hook options. This is the point of the test drive: the journalist should see the full scripting flow, not a shortcut version of it.
 - Treat the in-progress preset exactly as you would a saved one — voice, standards, style, and publication context, all authoritative.
 - Output the script with word count and duration.
@@ -232,7 +235,7 @@ Once you have the source content: copy it, update the frontmatter `name:` and H1
 ### 2.5 Partial update
 
 If the user says "update the voice in the {preset-name} preset" (or standards, style, or publication context):
-1. Read the existing preset file. Identify the target section by its markers — `<!-- PUBLICATION_START -->` / `<!-- PUBLICATION_END -->`, `<!-- VOICE_START -->` / `<!-- VOICE_END -->`, `<!-- STANDARDS_START -->` / `<!-- STANDARDS_END -->`, `<!-- STYLE_START -->` / `<!-- STYLE_END -->`, `<!-- PLATFORMS_START -->` / `<!-- PLATFORMS_END -->`, `<!-- WARNINGS_START -->` / `<!-- WARNINGS_END -->`, `<!-- NOTES_START -->` / `<!-- NOTES_END -->`.
+1. Read the existing preset file. Identify the target section by its markers — `<!-- PUBLICATION_START -->` / `<!-- PUBLICATION_END -->`, `<!-- VOICE_START -->` / `<!-- VOICE_END -->`, `<!-- STANDARDS_START -->` / `<!-- STANDARDS_END -->`, `<!-- STYLE_START -->` / `<!-- STYLE_END -->`, `<!-- PLATFORMS_START -->` / `<!-- PLATFORMS_END -->`, `<!-- WARNINGS_START -->` / `<!-- WARNINGS_END -->`, `<!-- HARDSTOPS_START -->` / `<!-- HARDSTOPS_END -->`, `<!-- NOTES_START -->` / `<!-- NOTES_END -->`.
 2. Walk through only that area, using the guidance in `references/setup-areas.md`.
 3. Re-run the relevant mini-review (voice stress test if voice changed; style contradiction check if style changed).
 4. Re-run the full review (read `references/review-checklist.md`), focusing on how the change interacts with unchanged content.
@@ -242,6 +245,17 @@ If the user says "update the voice in the {preset-name} preset" (or standards, s
 Do not re-ask anything that isn't changing.
 
 **If the preset file isn't available** (e.g., the presets/ folder isn't writable or the session is new): ask the user to paste in their current `script-wizard-{slug}.md` file. Extract the relevant sections from it, walk through the update, and generate a new scripting skill file.
+
+### 2.6 Preset refresh (annual review)
+
+When the user says "refresh my preset", "annual review", "review my [preset-name] preset", or similar:
+
+1. Load the preset record (or ask the user to paste their scripting skill file if it's unavailable). Show when it was last updated.
+2. Walk through all five areas in order. For each, briefly summarise what's currently configured and ask: "Has anything changed since [last-updated date]?"
+3. For any area where something has changed, walk through only the changed parts using the guidance in `references/setup-areas.md`.
+4. Re-run mini-reviews for any sections that changed. Re-run the full review.
+5. If anything changed: update `updated` in the preset record, generate an updated scripting skill file, and instruct the user to replace the old one.
+6. If nothing changed: confirm this and update the `updated` date in the preset record so the staleness check resets. Tell the user their preset is current.
 
 ---
 
