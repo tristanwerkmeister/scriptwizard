@@ -42,6 +42,25 @@ From their answers, generate a `{PUBLICATION_CONTEXT}` block — a concise set o
 
 Also capture `{BEAT_RISKS}` separately — the story-risk categories from the final question. These feed into the sensitivity warnings table at generation time.
 
+Also ask about per-story-type length targets:
+
+> Do you have different length targets for different story types? I'll use these as defaults when you don't specify a length at scripting time. My starting points are:
+> - **News** (breaking/incremental): ~140 words (~56s)
+> - **Explainer** (policy, process, issues): ~170 words (~68s)
+> - **Narrative** (feature, human interest): ~200 words (~80s)
+>
+> Say "use the defaults" if these work for you, or tell me if you typically go shorter or longer for any type.
+
+Capture as `{LENGTH_DEFAULTS}` — a markdown table:
+
+| Structure | Default | Approximate duration |
+|-----------|---------|----------------------|
+| News | ~[X] words | ~[Y]s |
+| Explainer | ~[X] words | ~[Y]s |
+| Narrative | ~[X] words | ~[Y]s |
+
+Calculate approximate duration as words ÷ 2.5, rounded to the nearest 5 seconds.
+
 ---
 
 ## Area 3: Voice Profile
@@ -110,6 +129,19 @@ If the user has no newsroom standards (e.g., freelancer), offer a framework as t
 Convert verbose guidelines using the conversion rules in `editorial-ethics.md`.
 
 Store confirmed standards as `{EDITORIAL_STANDARDS}`.
+
+After capturing standards, ask:
+
+> Are there any topics or story types where you want AI scripting assistance **refused entirely** — not just flagged, but refused? For example: active police operations where details could endanger people, stories involving minors, embargoed material where even a draft is a risk.
+>
+> These become **hard stops** — the scripting skill will refuse these requests outright rather than warning and continuing.
+>
+> If your standards already cover this, or you don't need hard stops, just say "none."
+
+Store as `{HARD_STOPS}`. Format as a bulleted list:
+- **[Topic]:** [One-line explanation of why AI assistance is refused here]
+
+If the journalist names none, use: `_No hard stops configured. All topics proceed to the sensitivity check._`
 
 ---
 
