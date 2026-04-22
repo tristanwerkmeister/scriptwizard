@@ -59,7 +59,11 @@ In particular:
 <!-- PLATFORMS_START -->
 ## PLATFORM NOTES
 
-Write for general vertical video format (9:16) by default. Default length ~170 words (~68 seconds). If the journalist specifies a platform or length for a given script, apply that — otherwise use the defaults.
+Write for general vertical video format (9:16) by default. Use these default lengths by structure type:
+
+{LENGTH_DEFAULTS}
+
+If the journalist specifies a length for a given story, that takes precedence. Otherwise use the per-structure defaults above.
 <!-- PLATFORMS_END -->
 
 ---
@@ -84,9 +88,15 @@ Proceed only after the user acknowledges the risk. Always flag it regardless.
 
 ---
 
+<!-- HARDSTOPS_START -->
+## HARD STOPS
+
+{HARD_STOPS}
+<!-- HARDSTOPS_END -->
+
+---
+
 <!-- NOTES_START -->
 ## NOTES
-
-Areas flagged as weak during setup review, for attention at next partial update:
 
 <!-- NOTES_END -->

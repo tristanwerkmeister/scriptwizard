@@ -6,7 +6,7 @@ How to generate the scripting skill file, and how to read, write, list, rename, 
 
 ## Generating the scripting skill file
 
-This is the primary output of a setup or update session. At the end of §1.7 (and after any management operation that changes preset content), fill `references/scripting-skill-template.md` and deliver the result to the user.
+This is the primary output of a setup or update session. At the end of section 1.7 (and after any management operation that changes preset content), fill `references/scripting-skill-template.md` and deliver the result to the user.
 
 ### Placeholder mapping for the scripting skill template
 
@@ -20,7 +20,9 @@ This is the primary output of a setup or update session. At the end of §1.7 (an
 | `{EDITORIAL_STANDARDS}` | The converted newsroom standards from Area 4 |
 | `{STYLE_RULES}` | The extracted/converted style rules from Area 5 |
 | `{BEAT_SPECIFIC_WARNINGS}` | Table rows built from beat risks named in Area 2 (see below) |
-| `{PRESET_NOTES}` | If the preset rated Adequate: a bulleted list of weak areas. If Strong: empty string — also remove the "Areas flagged as weak during setup review" intro line from the NOTES section so the section body is completely blank. |
+| `{LENGTH_DEFAULTS}` | A markdown table of default word counts by structure type, built from preferences captured in Area 2. Sensible defaults if the journalist didn't specify: News ~140 words (~56s), Explainer ~170 words (~68s), Narrative ~200 words (~80s). |
+| `{HARD_STOPS}` | Bulleted list of hard-stop topics from Area 4. Format: `- **[Topic]:** [One-line reason]`. If none designated, use: `_No hard stops configured. All topics proceed to the sensitivity check._` |
+| `{PRESET_NOTES}` | If the preset rated Adequate: include the intro line followed by a bulleted list — `"Areas flagged as weak during setup review, for attention at next partial update:\n\n- [weak area 1]\n- [weak area 2]"`. If Strong: empty string — the NOTES section body remains completely blank. |
 
 ### Building `{BEAT_SPECIFIC_WARNINGS}`
 
@@ -36,7 +38,7 @@ The `## SCRIPTING` section and everything under it must be copied from the templ
 
 ### Delivering the file
 
-Present the completed scripting skill file to the user as a downloadable file, named `script-wizard-{slug}.md`. Then give the installation instructions from §1.7 of SKILL.md.
+Present the completed scripting skill file to the user as a downloadable file, named `script-wizard-{slug}.md`. Then give the installation instructions from section 1.7 of SKILL.md.
 
 ---
 
@@ -103,7 +105,9 @@ Before saving a preset record, fill every placeholder in `preset-template.md`:
 | `{STYLE_RULES}` | The extracted/converted style rules from Area 5 |
 | `{CREATION_DATE}` | Today's date in ISO format (YYYY-MM-DD). Use the same value for both `created` and `updated` on first save. On partial updates, only change `updated`. |
 | `{BEAT_SPECIFIC_WARNINGS}` | Table rows built from `{BEAT_RISKS}` captured in Area 2 — see below |
-| `## NOTES` | Not a placeholder — fill this section with a bulleted list of weak areas if the preset rated Adequate. Leave the section body empty (keep the header and markers) if the preset rated Strong. |
+| `{LENGTH_DEFAULTS}` | Same as the scripting skill — markdown table of per-structure defaults from Area 2. |
+| `{HARD_STOPS}` | Same as the scripting skill — bulleted list from Area 4, or the "none configured" line. |
+| `## NOTES` | Not a placeholder — if the preset rated Adequate, insert the line `"Areas flagged as weak during setup review, for attention at next partial update:"` followed by a bulleted list. If Strong, leave the section body completely empty (keep the header and markers). |
 
 ### Building `{BEAT_SPECIFIC_WARNINGS}`
 
