@@ -28,7 +28,6 @@ Ask:
 > - Who is your typical viewer on social? (e.g., general public, industry professionals, local community, policy wonks)
 > - How much can you assume your audience already knows about your beat?
 > - What's the goal of your social video presence? (e.g., build brand awareness for the publication, make local stories travel to a national audience, deepen engagement with an existing niche community, drive traffic to long-form content, reach a younger demographic)
-> - **What kinds of stories on your beat carry the most risk if details are wrong?** (e.g., legal exposure, source safety, safety-critical facts, embargoed information, medical/financial advice) — I'll use this to tailor the warnings in your preset.
 
 From their answers, generate a `{PUBLICATION_CONTEXT}` block — a concise set of directives that captures:
 
@@ -39,8 +38,6 @@ From their answers, generate a `{PUBLICATION_CONTEXT}` block — a concise set o
 - **Knowledge baseline:** what can be assumed vs. must be explained (be specific — "assume the viewer knows what an AD is" or "assume the viewer has never heard of widebody aircraft")
 - **Niche calibration:** how specialist the scripts should lean
 - **Social media goals:** what the social video presence is trying to achieve, and how that shapes hook strategy
-
-Also capture `{BEAT_RISKS}` separately — the story-risk categories from the final question. These feed into the sensitivity warnings table at generation time.
 
 Also ask about per-story-type length targets:
 
