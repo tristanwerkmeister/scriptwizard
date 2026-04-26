@@ -114,9 +114,9 @@ Run the full checklist against everything captured. Be specific — quote the pr
 - **Adequate** → note the weak areas, ask the user whether to strengthen now or proceed to test drive. If they choose to proceed, record the weak areas in the preset's `## NOTES` section so future partial updates know where to focus.
 - **Needs work** → do not proceed yet. Walk the user back through the problem areas.
 
-### 1.6 Test drive (offered, skippable)
+### 1.6 Test drive (always offer — skippable by the journalist, not by you)
 
-Before generating the scripting skill, offer one test script. This catches gaps a checklist can't — a preset can read "Strong" on every check and still produce scripts the journalist doesn't like. A real script is the only real test.
+Always offer a test script here. Do not proceed directly to section 1.7. This catches gaps a checklist can't — a preset can read "Strong" on every check and still produce scripts the journalist doesn't like. A real script is the only real test.
 
 Offer:
 
