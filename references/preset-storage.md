@@ -19,14 +19,14 @@ This is the primary output of a setup or update session. At the end of section 1
 | `{VOICE_PROFILE}` | The confirmed voice profile from Area 3 |
 | `{EDITORIAL_STANDARDS}` | The converted newsroom standards from Area 4 |
 | `{STYLE_RULES}` | The extracted/converted style rules from Area 5 |
-| `{BEAT_SPECIFIC_WARNINGS}` | Table rows built from beat risks named in Area 2 (see below) |
+| `{BEAT_SPECIFIC_WARNINGS}` | Beat-specific warning rows inferred from `{PUBLICATION_CONTEXT}` — see below |
 | `{LENGTH_DEFAULTS}` | A markdown table of default word counts by structure type, built from preferences captured in Area 2. Sensible defaults if the journalist didn't specify: News ~140 words (~56s), Explainer ~170 words (~68s), Narrative ~200 words (~80s). |
 | `{HARD_STOPS}` | Bulleted list of hard-stop topics from Area 4. Format: `- **[Topic]:** [One-line reason]`. If none designated, use: `_No hard stops configured. All topics proceed to the sensitivity check._` |
 | `{PRESET_NOTES}` | If the preset rated Adequate: include the intro line followed by a bulleted list — `"Areas flagged as weak during setup review, for attention at next partial update:\n\n- [weak area 1]\n- [weak area 2]"`. If Strong: empty string — the NOTES section body remains completely blank. |
 
 ### Building `{BEAT_SPECIFIC_WARNINGS}`
 
-Same rules as in `references/preset-template.md`. Convert each beat risk the journalist named in Area 2 into a `| Scenario | Warning |` table row. If they named none, leave `{BEAT_SPECIFIC_WARNINGS}` empty.
+Infer beat-specific risks from `{PUBLICATION_CONTEXT}` — do not ask the journalist. See the examples in the preset record section below for guidance on what rows to generate for common beats. If the beat is general news with no obvious high-stakes category, leave empty.
 
 ### Self-check before delivering
 
@@ -104,32 +104,40 @@ Before saving a preset record, fill every placeholder in `preset-template.md`:
 | `{EDITORIAL_STANDARDS}` | The converted newsroom standards from Area 4 |
 | `{STYLE_RULES}` | The extracted/converted style rules from Area 5 |
 | `{CREATION_DATE}` | Today's date in ISO format (YYYY-MM-DD). Use the same value for both `created` and `updated` on first save. On partial updates, only change `updated`. |
-| `{BEAT_SPECIFIC_WARNINGS}` | Table rows built from `{BEAT_RISKS}` captured in Area 2 — see below |
+| `{BEAT_SPECIFIC_WARNINGS}` | Beat-specific warning rows inferred from `{PUBLICATION_CONTEXT}` — see below |
 | `{LENGTH_DEFAULTS}` | Same as the scripting skill — markdown table of per-structure defaults from Area 2. |
 | `{HARD_STOPS}` | Same as the scripting skill — bulleted list from Area 4, or the "none configured" line. |
 | `## NOTES` | Not a placeholder — if the preset rated Adequate, insert the line `"Areas flagged as weak during setup review, for attention at next partial update:"` followed by a bulleted list. If Strong, leave the section body completely empty (keep the header and markers). |
 
 ### Building `{BEAT_SPECIFIC_WARNINGS}`
 
-`{BEAT_RISKS}` is the list of story-risk categories the journalist named in Area 2. Convert each into a sensitivity warnings table row in the same `| Scenario | Warning |` format as the defaults.
+Infer beat-specific risks from `{PUBLICATION_CONTEXT}` — do not ask the journalist. Based on the beat and subject area, generate appropriate warning rows in the same `| Scenario | Warning |` format as the defaults.
 
-Examples:
+Examples by beat:
 
-- Health reporter named "medical advice, vulnerable patients":
+- Health / medical:
   ```
   | Medical claims / dosages | AI hallucinates numbers and drug names. Verify every dose, side effect, and study citation against primary sources. |
   ```
-- Business reporter named "embargoes, market-moving facts":
+- Business / financial:
   ```
   | Embargoed material | AI may not respect embargo dates. Double-check nothing in the draft references embargoed information. |
-  | Market-moving facts | Wrong numbers on market-moving stories can move markets. Verify every figure against primary source before posting. |
+  | Market-moving figures | Wrong numbers on market-moving stories can move markets. Verify every figure against primary source before posting. |
   ```
-- Aviation/safety reporter named "safety-critical technical claims":
+- Aviation / infrastructure / safety:
   ```
   | Safety-critical technical claims | Technical specs and procedural details are high-risk. Verify against manufacturer documentation or regulatory source. |
   ```
+- Legal / courts:
+  ```
+  | Court details and named individuals | AI can confuse cases, misattribute charges, or hallucinate rulings. Verify all legal facts against original documents. |
+  ```
+- Conflict / security:
+  ```
+  | Source identification | Naming sources in conflict coverage can endanger them. Verify all attribution is intentional and appropriate. |
+  ```
 
-Generate equivalent rows for whatever risks the journalist named. If they named none, leave `{BEAT_SPECIFIC_WARNINGS}` empty (no rows added).
+If the beat is general news with no obvious high-stakes category, leave `{BEAT_SPECIFIC_WARNINGS}` empty.
 
 ### Self-check before writing
 
