@@ -1,20 +1,57 @@
 # Script Wizard
 
-A Claude skill that helps journalists build personalised vertical video script presets — and then use them to draft, review, and iterate on social media scripts.
+A vertical social media video script assistant for journalists. Captures your voice, editorial standards, style guide, and publication context — then uses them to draft, review, and iterate on scripts.
+
+There are two versions depending on what AI tools you use:
+
+| | Standalone system prompt | Claude skill |
+|---|---|---|
+| **Works with** | Any AI (ChatGPT, Gemini, Claude, etc.) | Claude Desktop or claude.ai Projects only |
+| **Setup** | Copy one file, paste as system prompt | Install skill folder, run setup conversation |
+| **Preset storage** | You copy and save a text block | Skill manages files automatically |
+| **File** | `standalone-system-prompt.md` | `SKILL.md` + `references/` |
 
 ---
 
-## How it works
+## Option 1: Standalone system prompt
+
+For anyone using ChatGPT, Gemini, Claude, or any other AI assistant with a system prompt or custom instructions field.
+
+### Install
+
+1. Open [`standalone-system-prompt.md`](standalone-system-prompt.md).
+2. Copy everything from `=== BEGIN SYSTEM PROMPT ===` to the end of the file.
+3. Paste it into your AI tool's system prompt or custom instructions field:
+   - **ChatGPT:** Settings → Personalization → Custom instructions
+   - **Claude.ai Projects:** Project settings → Project instructions
+   - **Gemini:** System instructions (in Advanced settings)
+
+### First session
+
+Say: **"set up Script Wizard"**
+
+You'll be walked through a 10–30 minute setup. At the end, the AI outputs a **preset block** — a block of text to copy and save somewhere (a note, a text file, anywhere).
+
+### Every subsequent session
+
+1. Paste your saved preset block at the start of the chat.
+2. Say: **"Script this: [your material]"**
+
+### Updating your preset
+
+Start a new chat, paste your preset block, and say: **"Update the [voice / standards / style / publication] in my preset."** You'll be walked through just that section and get an updated preset block to save.
+
+---
+
+## Option 2: Claude skill
+
+For journalists using Claude Desktop or claude.ai Projects. The skill manages your preset files automatically and integrates directly into Claude conversations.
 
 Script Wizard is two skills in one package:
 
-1. **Script Wizard Setup** (`SKILL.md` — this skill): walks you through a one-time setup conversation to capture your voice, editorial standards, style guide, and publication context. At the end it generates a personalised scripting skill file for you to install.
+1. **Script Wizard Setup** (`SKILL.md`): a one-time setup conversation that captures your voice, editorial standards, style guide, and publication context. At the end it generates a personalised scripting skill file for you to install.
 
-2. **Your scripting skill** (generated): a self-contained skill file with your preset baked in. Install it once, then use it in any future conversation to draft scripts, convert articles, or review drafts.
-
----
-
-## Installation
+2. **Your scripting skill** (generated): a self-contained skill file with your preset baked in. Install it once, then use it in any future conversation.
 
 ### Claude Desktop
 
@@ -36,7 +73,7 @@ At the end of setup, Script Wizard generates your personal scripting skill file 
 
 ---
 
-## What setup collects
+## What setup collects (both versions)
 
 Setup walks through five areas:
 
@@ -50,9 +87,7 @@ Structure, length, and hook type are set per-story at scripting time — they de
 
 ---
 
-## Using your scripting skill
-
-Once your scripting skill is installed, in any conversation:
+## Using your scripting skill (both versions)
 
 - **"Script this: [paste your notes]"** — drafts from newsgathering material
 - **"Convert this article to a script: [paste article]"** — extracts the best angle for your audience
@@ -61,16 +96,11 @@ Once your scripting skill is installed, in any conversation:
 
 ---
 
-## Updating a preset
-
-Come back to this Setup skill and say **"update the [voice / standards / style / publication context] in my [preset name] preset"**. Setup walks through just that section and generates an updated scripting skill file to reinstall.
-
----
-
 ## File structure
 
 ```
-SKILL.md                          ← The setup skill (install this)
+standalone-system-prompt.md       ← Standalone version (any AI tool)
+SKILL.md                          ← Claude skill: setup and preset management
 references/
   scripting-skill-template.md    ← Template for generated scripting skills
   setup-areas.md                 ← Guidance for each setup area
@@ -85,6 +115,6 @@ references/
 
 ## Privacy
 
-Presets are plain markdown files — nothing is encrypted or sent anywhere beyond your normal Claude usage. Don't put anything sensitive in a preset (source contact details, unpublished embargoed material). These are config files, not a secure store.
+Presets are plain markdown files — nothing is encrypted or sent anywhere beyond your normal AI usage. Don't put anything sensitive in a preset (source contact details, unpublished embargoed material). These are config files, not a secure store.
 
-Generated scripting skills are portable: share them with a colleague by sending the file, or move between machines by copying it.
+Generated scripting skills and preset blocks are portable: share them with a colleague by sending the file or copying the text.
