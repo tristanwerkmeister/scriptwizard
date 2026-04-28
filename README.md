@@ -4,46 +4,16 @@ A vertical social media video script assistant for journalists. Captures your vo
 
 There are two versions depending on what AI tools you use:
 
-| | Standalone system prompt | Claude skill |
+| | Claude skill | Standalone system prompt |
 |---|---|---|
-| **Works with** | Any AI (ChatGPT, Gemini, Claude, etc.) | Claude Desktop or claude.ai Projects only |
-| **Setup** | Copy one file, paste as system prompt | Install skill folder, run setup conversation |
-| **Preset storage** | You copy and save a text block | Skill manages files automatically |
-| **File** | `standalone-system-prompt.md` | `SKILL.md` + `references/` |
+| **Works with** | Claude Desktop or claude.ai Projects only | Any AI (ChatGPT, Gemini, Claude, etc.) |
+| **Setup** | Install skill folder, run setup conversation | Copy one file, paste as system prompt |
+| **Preset storage** | Skill manages files automatically | You copy and save a text block |
+| **File** | `SKILL.md` + `references/` | `standalone-system-prompt.md` |
 
 ---
 
-## Option 1: Standalone system prompt
-
-For anyone using ChatGPT, Gemini, Claude, or any other AI assistant with a system prompt or custom instructions field.
-
-### Install
-
-1. Open [`standalone-system-prompt.md`](standalone-system-prompt.md).
-2. Copy everything from `=== BEGIN SYSTEM PROMPT ===` to the end of the file.
-3. Paste it into your AI tool's system prompt or custom instructions field:
-   - **ChatGPT:** Settings → Personalization → Custom instructions
-   - **Claude.ai Projects:** Project settings → Project instructions
-   - **Gemini:** System instructions (in Advanced settings)
-
-### First session
-
-Say: **"set up Script Wizard"**
-
-You'll be walked through a 10–30 minute setup. At the end, the AI outputs a **preset block** — a block of text to copy and save somewhere (a note, a text file, anywhere).
-
-### Every subsequent session
-
-1. Paste your saved preset block at the start of the chat.
-2. Say: **"Script this: [your material]"**
-
-### Updating your preset
-
-Start a new chat, paste your preset block, and say: **"Update the [voice / standards / style / publication] in my preset."** You'll be walked through just that section and get an updated preset block to save.
-
----
-
-## Option 2: Claude skill
+## Option 1: Claude skill
 
 For journalists using Claude Desktop or claude.ai Projects. The skill manages your preset files automatically and integrates directly into Claude conversations.
 
@@ -73,6 +43,36 @@ At the end of setup, Script Wizard generates your personal scripting skill file 
 
 ---
 
+## Option 2: Standalone system prompt
+
+For anyone using ChatGPT, Gemini, Claude, or any other AI assistant with a system prompt or custom instructions field.
+
+### Install
+
+1. Open [`standalone-system-prompt.md`](standalone-system-prompt.md).
+2. Copy everything from `=== BEGIN SYSTEM PROMPT ===` to the end of the file.
+3. Paste it into your AI tool's system prompt or custom instructions field:
+   - **ChatGPT:** Create a Project → open it → Customize → paste into the instructions field
+   - **Claude.ai Projects:** Project settings → Project instructions
+   - **Gemini:** System instructions (in Advanced settings)
+
+### First session
+
+Say: **"set up Script Wizard"**
+
+You'll be walked through a 10–30 minute setup. At the end, the AI outputs a **preset block** — a block of text to copy and save somewhere (a note, a text file, anywhere).
+
+### Every subsequent session
+
+1. Paste your saved preset block at the start of the chat.
+2. Say: **"Script this: [your material]"**
+
+### Updating your preset
+
+Start a new chat, paste your preset block, and say: **"Update the [voice / standards / style / publication] in my preset."** You'll be walked through just that section and get an updated preset block to save.
+
+---
+
 ## What setup collects (both versions)
 
 Setup walks through five areas:
@@ -99,8 +99,8 @@ Structure, length, and hook type are set per-story at scripting time — they de
 ## File structure
 
 ```
-standalone-system-prompt.md       ← Standalone version (any AI tool)
 SKILL.md                          ← Claude skill: setup and preset management
+standalone-system-prompt.md       ← Standalone version (any AI tool)
 references/
   scripting-skill-template.md    ← Template for generated scripting skills
   setup-areas.md                 ← Guidance for each setup area
@@ -118,3 +118,18 @@ references/
 Presets are plain markdown files — nothing is encrypted or sent anywhere beyond your normal AI usage. Don't put anything sensitive in a preset (source contact details, unpublished embargoed material). These are config files, not a secure store.
 
 Generated scripting skills and preset blocks are portable: share them with a colleague by sending the file or copying the text.
+
+---
+
+## Disclaimer
+
+Script Wizard is a prompt-engineering framework, not a script writer. It helps journalists build a structured configuration — voice, editorial standards, style guide, publication context — that makes AI scripting assistance more consistent and more personalised. The AI still drafts the scripts; Script Wizard just helps you set it up to do that well.
+
+Before using any output, be aware of the standard limitations of AI-generated content:
+
+- **AI hallucinates.** Facts, figures, names, quotes, and dates can be plausible-sounding and wrong. Verify everything against primary sources before use.
+- **AI cannot verify.** It has no access to your reporting, your recordings, or real-time information. It works only with what you give it.
+- **AI mangles quotes.** Even when given the correct text, AI models can subtly alter wording. Always check verbatim quotes against the original recording.
+- **AI cannot judge sensitivity.** It cannot assess legal exposure, re-traumatisation risk, source safety, or editorial judgement calls. Those remain yours.
+
+Script Wizard includes prompts throughout the scripting workflow to flag these risks. They are reminders, not safeguards. You are editorially responsible for everything you publish.
