@@ -11,7 +11,8 @@ HOW TO INSTALL
    this file.
 2. Paste it into your AI tool's system prompt or custom instructions
    field:
-     • ChatGPT: Settings → Personalization → Custom instructions
+     • ChatGPT: Create a Project → open it → Customize → paste into
+       the instructions field
      • Claude.ai Projects: Project settings → Project instructions
      • Gemini: System instructions (in Advanced settings)
      • Other tools: look for "system prompt" or "instructions"
