@@ -2,6 +2,8 @@
 
 A vertical social media video script assistant for journalists. Captures your voice, editorial standards, style guide, and publication context — then uses them to draft, review, and iterate on scripts.
 
+> **Note:** Script Wizard is an independent open-source project. It is not affiliated with, endorsed by, or maintained by any news organisation. It is designed to work with any newsroom's standards and workflows.
+
 There are two versions depending on what AI tools you use:
 
 | | Claude skill | Standalone system prompt |
@@ -133,3 +135,9 @@ Before using any output, be aware of the standard limitations of AI-generated co
 - **AI cannot judge sensitivity.** It cannot assess legal exposure, re-traumatisation risk, source safety, or editorial judgement calls. Those remain yours.
 
 Script Wizard includes prompts throughout the scripting workflow to flag these risks. They are reminders, not safeguards. You are editorially responsible for everything you publish.
+
+---
+
+## License
+
+[MIT](LICENSE)
