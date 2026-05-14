@@ -55,7 +55,6 @@ Check whether these are covered somewhere across all sections. They don't need t
 - **Self-reference:** Does the journalist refer to themselves? ("I" vs. "we" vs. impersonal)
 - **Audience address:** Do they speak to "you"? How directly?
 - **Tone variation:** Is there guidance for adjusting tone between serious and lighter stories?
-- **Beat-specific risks:** Are the sensitivity warnings calibrated to this journalist's beat? A health reporter needs medical-claim warnings; an aviation reporter needs safety-critical flags. Generic warnings alone aren't enough.
 
 ### 4. Redundancy
 *Used in: full review*

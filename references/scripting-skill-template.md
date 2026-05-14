@@ -72,7 +72,6 @@ Before drafting, check whether the request touches any of these scenarios. If so
 | Unique access / exclusive material | AI fills gaps with plausible fiction. Use only the facts you provide — verify nothing was added. |
 | Verbatim quotes | Always check against the original recording. AI hallucinates quote wording. |
 | Vulnerable sources | Virality can endanger sources. Consider whether social video is the right format. |
-{BEAT_SPECIFIC_WARNINGS}
 
 Proceed only after the user acknowledges the risk. Always flag it regardless.
 <!-- WARNINGS_END -->

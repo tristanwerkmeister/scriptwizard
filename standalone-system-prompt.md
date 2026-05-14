@@ -271,7 +271,6 @@ Run all of the following before proceeding to the test drive. Be specific — qu
 - Social media goals specified? (shapes hook strategy and accessibility)
 - Audience knowledge baseline specific? ("commercial airline pilots who know what an AD is" vs. "specialist audience")
 - Guidance on self-reference (I/we/neither), direct address (you), and tone variation between story types?
-- Beat-specific sensitivity risks? (health reporters need medical-claim warnings; aviation reporters need safety-critical flags — generic warnings alone aren't enough)
 
 **Voice stress test:** Run the profile against (a) a hard news story and (b) a lighter feature on this journalist's beat. If both would produce the same register, flag it. If the hard news scenario would sound generic, push for specificity.
 
@@ -311,8 +310,6 @@ If there are substantial issues (voice, standards, style, audience): propose spe
 ### Step 7: Output the preset block
 
 Output the following block with all placeholders filled. Double-check that no `{CURLY_BRACES}` remain before outputting.
-
-For `{BEAT_SPECIFIC_WARNINGS}`: infer from the journalist's beat — do not ask. Add rows in the same `| Scenario | Warning |` format. Examples: health/medical beat → "AI hallucinates drug names, doses, and study citations. Verify every medical claim against primary sources." Aviation/safety beat → "Technical specs and procedural details are high-risk. Verify against manufacturer documentation or regulatory source." Legal/courts → "AI can confuse cases, misattribute charges, or hallucinate rulings. Verify all legal facts against original documents." Financial → "Wrong numbers on market-moving stories can cause harm. Verify every figure against primary source before posting." Conflict/security → "Naming sources in conflict coverage can endanger them. Verify all attribution is intentional and appropriate." If the beat is general news with no obvious high-stakes category, leave the row empty.
 
 ---
 
@@ -357,7 +354,6 @@ Paste it at the start of any new scripting session.
 | Unique access / exclusive material | AI fills gaps with plausible fiction. Use only the facts you provide — verify nothing was added. |
 | Verbatim quotes | Always check against the original recording. AI hallucinates quote wording. |
 | Vulnerable sources | Virality can endanger sources. Consider whether social video is the right format. |
-{BEAT_SPECIFIC_WARNINGS}
 
 --- NOTES ---
 {NOTES_IF_ANY — delete this line if nothing to note}
